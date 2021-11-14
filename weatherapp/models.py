@@ -4,6 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 
 class User(models.Model):
+    id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=200)
     cities = ArrayField(models.CharField(max_length=40, blank=False))
     
