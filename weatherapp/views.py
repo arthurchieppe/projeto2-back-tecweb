@@ -10,7 +10,7 @@ from .models import User
 def index(request):
     return HttpResponse("Olá mundo! Este é o app notes de Tecnologias Web do Insper.")
 
-@api_view(['GET', 'POST'])
+@api_view(['GET', 'POST', 'DELETE'])
 def api_user(request, username):
     if request.method == 'POST':
         new_user_data = request.data
