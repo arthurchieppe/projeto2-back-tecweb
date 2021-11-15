@@ -14,8 +14,13 @@ def index(request):
 def api_user(request, username):
     if request.method == 'POST':
         new_user_data = request.data
-        print(new_user_data)
-        user = User(username=username, cities=new_user_data['cities'])
+        try:
+            user = User.objects.get(username=username)
+            user.cities = new_user_data['cities']
+            print("try")
+        except:
+            user = User(username=username, cities=new_user_data['cities'])
+            print("except")
         user.save()
     else:
         try:
