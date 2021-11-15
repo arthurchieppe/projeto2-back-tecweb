@@ -26,7 +26,8 @@ def api_user(request, username):
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:
-            raise Http404()
+            user = User(username=username)
+            # raise Http404()
     
     serialized_user = UserSerializer(user)
     return Response(serialized_user.data)
