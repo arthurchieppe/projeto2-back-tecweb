@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-0@ouaj9!7yqmty87vjowu*1r9q_$=u3c2%18h99u8x8h26hn4s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://morning-temple-71197.herokuapp.com/", 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,15 +78,24 @@ WSGI_APPLICATION = 'weather.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# POstgres local:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'weather',
+#         'USER': 'weatheruser',
+#         'PASSWORD': 'weatherapp2021',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'weather',
-        'USER': 'weatheruser',
-        'PASSWORD': 'weatherapp2021',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://localhost/weather?user=weatheruser&password=weatherapp2021',
+        conn_max_age=600,
+        ssl_require=not DEBUG
+    )
 }
 
 
