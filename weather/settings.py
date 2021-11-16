@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'weather.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://localhost/weather?user=weatheruser&password=weatherapp2021',
+        default='postgresql://localhost/weather?user=weatheruser&password=weatherapp',
         conn_max_age=600,
         ssl_require=not DEBUG
     )
