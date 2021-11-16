@@ -19,7 +19,7 @@ def api_user(request, username):
             user.cities = new_user_data['cities']
             print("try")
         except:
-            user = User(username=username, cities=new_user_data['cities'])
+            user = User(username=username)
             print("except")
         user.save()
     else:
